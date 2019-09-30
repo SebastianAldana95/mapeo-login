@@ -1,0 +1,5 @@
+com\mycompany\controller\ErrorController.class
+com\mycompany\controller\PageErrorController.class
+com\mycompany\controller\AdministradorController.class
+com\mycompany\controller\ClienteController.class
+com\mycompany\controller\LoginController.class

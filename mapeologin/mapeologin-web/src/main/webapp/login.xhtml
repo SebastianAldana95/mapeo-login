@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    
+    <h:head>
+        <title>Login</title>
+    </h:head>
+    <h:body style="text-align:center">
+        
+        
+        <h:form id="login">
+            <p:growl id="growl" showDetail="true"/>
+            <p:panel header="Login" style="width:350px">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel for="username" value="Usuario:" />
+                    <p:inputText id="username"
+                                 required="true" 
+                                 value="#{loginController.username}" />
+                    <h:outputLabel for="password" value="Clave:" />
+                    <p:password  id="password" 
+                                 required="true"
+                                 value="#{loginController.password}"/>
+                    <f:facet name="footer">
+                        <p:commandButton value="Login"
+                                         action="#{loginController.inicioSesion()}"
+                                         update=":login" />
+                    </f:facet>
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+    </h:body>
+
+</html>
+

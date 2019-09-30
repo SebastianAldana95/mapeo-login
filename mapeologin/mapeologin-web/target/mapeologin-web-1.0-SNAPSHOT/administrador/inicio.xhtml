@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>#{administradorController.user.rol}</title>
+        <f:event type="preRenderView" listener="#{administradorController.validarSesion()}"/>
+    </h:head>
+    <h:body>
+        <h:form id="admin">
+            <p:panel header="Sesion">
+                <p:outputLabel value="Bienvenido Admin"/>
+                <h1>#{administradorController.user.rol} #{administradorController.user.nombres}</h1>
+                <p:separator/>
+                <p:commandButton value="Logout" action="#{administradorController.cerrarSesion()}"/>
+            </p:panel>
+        </h:form>
+        <h:form id="addInversor">
+            <p:panel>
+                <p:growl id="grAdd" showDetail="true" autoUpdate="true"/>
+                <p:panelGrid columns="3">
+                    <p:outputLabel for="nombre" value="Nombre Inversor"/>
+                    <p:inputText id="nombre" value="#{administradorController.nombre}" required="true"/>
+                    <p:message for="nombre"/>
+                    <p:outputLabel for="cuenta" value="Numero de Cuenta"/>
+                    <p:inputText id="cuenta" value="#{administradorController.cuenta}" required="true"/>
+                    <p:message for="cuenta"/>
+                </p:panelGrid>
+                <p:commandButton value="Guardar" action="#{administradorController.agregarInversor()}" update=":addInversor, :addInversor:grAdd"/>
+            </p:panel>
+        </h:form>
+        <h:form id="addUser">
+            <p:panel>
+                <!--<p:messages id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="false" showDetail="true"/>-->
+                <p:growl id="userAdd" showDetail="true" autoUpdate="false" severity="info, fatal" showSummary="false"/>
+                <p:panelGrid columns="3">
+                    <p:outputLabel for="nombre" value="Nombres"/>
+                    <p:inputText id="nombre" value="#{administradorController.nombreuser}" required="true"/>
+                    <p:message for="nombre"/>
+                    <p:outputLabel for="username" value="Nombre Usuario"/>
+                    <p:inputText id="username" value="#{administradorController.username}" required="true"/>
+                    <p:message for="username"/>
+                    <p:outputLabel for="password" value="Clave"/>
+                    <p:password id="password" value="#{administradorController.password}" 
+                                validatorMessage="Las claves no coinciden" weakLabel="Debil" strongLabel="Fuerte" goodLabel="Bueno"
+                                match="clave2" feedback="true" promptLabel="Ingrese una clave" required="true" requiredMessage="Campo Requerido"/>
+                    <p:message for="password"/>
+                    <p:outputLabel for="clave2" value="Repetir Clave"/>
+                    <p:password id="clave2" required="true" requiredMessage="Campo requerido"/>
+                    <p:message for="clave2"/>
+                    <p:outputLabel for="rol" value="Tipo:" />
+                    <p:selectOneMenu id="rol" value="#{administradorController.rol}" style="width:125px">
+                        <f:selectItem itemLabel="Seleccione Uno" itemValue="" />
+                        <f:selectItem itemLabel="Administrador" itemValue="Administrador" />
+                        <f:selectItem itemLabel="Cliente" itemValue="Cliente" />
+                    </p:selectOneMenu>
+                    <p:message for="rol"/>
+                </p:panelGrid>
+                <p:commandButton value="Crear Usuario" action="#{administradorController.agregarUsuario()}" update=":addUser, :addUser:userAdd"/>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
+

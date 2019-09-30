@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Login</title>
+    </h:head>
+    <style type="text/css">
+        .ui-grid td {
+            white-space: normal;
+        }
+    </style>
+    <h:body>
+        <h:form>
+            <h1>#{errorController.statusCode}</h1>
+            <h2>#{errorController.requestURI}</h2>
+            <br/>
+            <h:outputText value="codigo #{errorController.statusCode}"></h:outputText>
+            <br/>
+            <h:outputText value="#{errorController.message}"></h:outputText>
+            <br/>
+            <h:outputText value="#{errorController.requestURI}"></h:outputText>
+            <br/>
+            <p:commandButton value="Inicio" action="login?faces-redirect=true"/>
+        </h:form>
+    </h:body>
+</html>
+
